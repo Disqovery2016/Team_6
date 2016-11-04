@@ -1,10 +1,3 @@
-// esp8266_test.ino
-//
-// Plot LM35 data on thingspeak.com using an Arduino and an ESP8266 WiFi
-// module.
-//
-// Author: Mahesh Venkitachalam
-// Website: electronut.in
 
 #include <SoftwareSerial.h>
 #include <stdlib.h>
