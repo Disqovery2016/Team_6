@@ -1,11 +1,18 @@
 
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 
 public class KNN{
 	public static void main(String[] args){
+				
+		
+		Scanner sn = new Scanner(System.in);
+		
 		ArrayList<KNN.DataEntry> data = new ArrayList<KNN.DataEntry>();
 		//data.add(new DataEntry(new double[]{1,8.1,89} "safe"));
 		data.add(new DataEntry(new double[]{1,8.1,89}, "safe"));
@@ -26,10 +33,100 @@ public class KNN{
 		data.add(new DataEntry(new double[]{9.7,9.5,1044}, "unsafe"));
 		data.add(new DataEntry(new double[]{8.7,10.5,640}, "unsafe"));
 		data.add(new DataEntry(new double[]{4.0,9.4,470}, "safe"));
-		data.add(new DataEntry(new double[]{1.8,7.4,540}, "safe"));
+		data.add(new DataEntry(new double[]{1,4,800}, "safe"));
+		data.add(new DataEntry(new double[]{1,5,900}, "safe"));
+		data.add(new DataEntry(new double[]{1,6,1000}, "safe"));
+		data.add(new DataEntry(new double[]{1,7,1100}, "safe"));
+		data.add(new DataEntry(new double[]{1,8,1200}, "safe"));
+		data.add(new DataEntry(new double[]{1,9,1300}, "safe"));
+		data.add(new DataEntry(new double[]{1,10,1400}, "safe"));
+		data.add(new DataEntry(new double[]{1,11,1500}, "safe"));
+		data.add(new DataEntry(new double[]{1,12,1600}, "safe"));
+		data.add(new DataEntry(new double[]{1,13,1700}, "safe"));
+		data.add(new DataEntry(new double[]{1,14,1800}, "safe"));
+		data.add(new DataEntry(new double[]{1,1,100}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,2,200}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,3,300}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,4,400}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,5,500}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,6,600}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,7,700}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,8,800}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,9,900}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,10,1000}, "unsafe"));
+		data.add(new DataEntry(new double[]{1,11,1100}, "unsafe"));
+		
 		KNN nn = new KNN(data, 3); //3 neighbours
-		System.out.println("Classified as: "+nn.classify(new DataEntry(new double[]{20,10,1000},"Ignore")));
+		
+		//System.out.println("Enter the tuple");
+		//double [] temp = 
+		
+		BufferedReader br = null;
+
+		try {
+
+			String sCurrentLine;
+			//double temp = (Double.parsesCurrentLine;
+			
+
+			br = new BufferedReader(new FileReader("/home/deepak/deepak/tcsdisq/file2"));
+			int correct = 0;
+			int incorrect = 0;
+			while ((sCurrentLine = br.readLine()) != null) {
+				//System.out.println(sCurrentLine);
+				//double temp = Double.parseDouble(sCurrentLine);
+				
+				 String[] StringOftuple = sCurrentLine.split(",");
+			        double[] tuple = new double[StringOftuple.length];
+
+/*
+			         for(double i = 0; i < StringOftuple.length; i++)
+			         {
+			             tuple[(int) i] = StringOftuple[i];
+			         }*/
+				
+			         for(int i = 0; i < StringOftuple.length; i++)
+			         {
+			        	 tuple[i] = Double.parseDouble(StringOftuple[i]);
+			         }
+			         
+			//	nn.classify(tuple[]);
+				
+				System.out.println("Classified as: "+nn.classify(new DataEntry(tuple,"Ignore")));
+			         if(nn.classify(new DataEntry(tuple,"Ignore")) == "safe"){
+			        	 correct++;
+			        	 
+			         }
+			         if(nn.classify(new DataEntry(tuple,"Ignore")) == "unsafe"){
+			        	 incorrect++;
+			        	 
+			         }
+			         System.out.println(correct);
+			         System.out.println(incorrect);
+			         
+				
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+		
+		//System.out.println("Classified as: "+nn.classify(new DataEntry(new double[]{20,10,1000},"Ignore")));
 	}
+	
+	
+	
+	
 	
 	
 	private int k;
