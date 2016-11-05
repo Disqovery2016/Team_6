@@ -34,7 +34,7 @@ clfGP = clf4.fit(X, Y)
 clf5 = MLPClassifier(learning_rate='constant', learning_rate_init=0.001,)
 clfMLP = clf5.fit(X, Y)
 
-test = [3, 4, 42]
+test = [3, 4, 42] #put the value you want to test NEW DATA FEEDING
 #Storing results 
 predictionDT = clfDT.predict (test) 
 predictionSVC = clfSVC.predict (test) 
